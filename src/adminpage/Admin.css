@@ -1,0 +1,32 @@
+.Admin {
+    width: 100%;
+    text-align: center;
+}
+
+.header{
+    width: 100%;
+    height: 50px;
+    background-color: #ccc;
+}
+
+.left-menu{
+    width: 20%;
+    height: 500px;
+    float: left;
+}
+
+
+
+.content {
+    width: 80%;
+    height: 600px;
+    background-color: pink;
+    float: left;
+}
+
+.footer {
+    width: 100%;
+    height: 80px;
+    background-color: beige;
+    clear: both;
+}
