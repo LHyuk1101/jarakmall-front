@@ -6,14 +6,10 @@ import './Admin.css';
 function AdminPage(){
     let navigate = useNavigate();
 
-    let alertClicked = () => {
-        alert("버튼 눌렸음");
-    };
-
     return(
        
         <div className='Admin'>
-            <div className='header'> Admin Page임.</div>
+            <div className='header'>헉! Admin Page임.</div>
             <div className='left-menu'> 
             <ListGroup variant="flush">
             <ListGroup.Item action onClick={() => {navigate('/admin-page/main')}}>관리자 메인</ListGroup.Item>

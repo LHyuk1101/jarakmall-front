@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-
 import {NavDropdown,Navbar,Nav,Form,Container,Button, Row,Col} from 'react-bootstrap/';
 import BgImg from './images/bg.png'; 
 import { useState } from 'react';
@@ -7,11 +5,14 @@ import data from './pages/data.js';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import Detail from './pages/Detail.js';
 import AdminPage from './adminpage/AdminMainPage.js';
+import RegisterPage from './pages/RegisterPage.js';
+import LoginPage from './pages/LoginPage.js';
+import axios from 'axios';
 import './App.css';
 
 function App() {
 
-    let [items] = useState(data);
+    let [items, setItems] = useState(data);
     let navigate = useNavigate();
 
     // shoes 배열을 3개씩 나누어 2차원 배열로 변환하는 함수
@@ -68,7 +69,10 @@ function App() {
 
           <Nav>
             <Navbar.Text>
-              <Button variant="outline-dark">로그인</Button>
+              <Button href='/login' variant="outline-dark">로그인</Button>
+            </Navbar.Text>
+            <Navbar.Text>
+              <Button href='/register' variant="outline-dark">회원가입</Button>
             </Navbar.Text>
             <Navbar.Text>
               <Button href="/admin-page" variant="outline-dark">관리자</Button>
@@ -94,7 +98,7 @@ function App() {
           <>
           <div className='main-bg' style={{backgroundImage : 'url('+BgImg+')'}}></div>
 
-          <div>상품목록</div>
+          <div>전체상품목록</div>
     
           <Container>
           
@@ -103,17 +107,25 @@ function App() {
               <Row key={rowIndex}>
                 {
                   row.map((item, index) => (
-                    <Products items = {item} itemImg={rowIndex * 3 + index + 1}></Products>
+                    <Products items = {item} itemImg={rowIndex * 3 + index + 1} key={index}></Products>
                   ))
                 }
               </Row>
             ))
           }
-    
+            <button onClick={() => {
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((result)=>{ console.log(result); 
+                let copy = [...items, ...result.data];
+                setItems(copy);
+              })
+              
+            }}>axios get요청으로 api요청해다가 상품 목록 추가해서 늘리기</button>
         </Container>
         </>
         } />
-        <Route path='/detail' element={<Detail/>} />
+        <Route path='/detail/:itemId' element={<Detail items={items}/>}/>
+
         <Route path='/admin-page' element={<AdminPage/>}> 
           <Route path='main' element={<div>여긴 관리자 메인이 있어야할거같고</div>}/>
           <Route path='member' element={<div>여긴 사용자관리가 있어야할거같고</div>}/>
@@ -121,6 +133,9 @@ function App() {
           <Route path='item' element={<div>여긴 상품관리를 해야할거같고</div>}/>
           <Route path='order' element={<div>여긴 주문을 관리해야할거같아요</div>}/>
         </Route>
+
+        <Route path='/register' element={<RegisterPage/>}/>
+        <Route path='/login' element={<LoginPage/>}/>
 
         <Route path='/about' element={<About/>}>
             <Route path='team6' element={<div>안녕하세요 6팀이에요</div>}/>
@@ -181,12 +196,14 @@ function DetailPage(props){
 
 function Products(props){
   return (
-      <Col xs>
+    
+        <Col xs>
           <img src={'https://codingapple1.github.io/shop/shoes'+props.itemImg+'.jpg'} width="150px" height="150px"></img>
-          <h4>{props.items.title}</h4>
-          <p>{props.items.content}</p>
+          <Link style={{ textDecoration: "none"}} to={'/detail/'+props.items.id}><h4>{props.items.title}</h4></Link>
+          <p style={{color: "black"}}>{props.items.content}</p>
           <p>가격 : {props.items.price}</p>
         </Col>
+      
   )
 }
 
