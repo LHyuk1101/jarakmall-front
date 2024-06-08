@@ -6,20 +6,20 @@ import './LoginPage.css';
 
 function LoginPage(){
 
-    let [credentials, setCredentials] = useState({
+    const [credentials, setCredentials] = useState({
         username: '',
         password: ''
     });
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
-    let handleChange = (e) => {
-      const {name, value} = e.target;
-      setCredentials({
-        ...credentials,
-        [name]: value
-      });  
-    };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setCredentials((prevState) => ({
+          ...prevState,
+          [name]: value
+        }));
+      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();

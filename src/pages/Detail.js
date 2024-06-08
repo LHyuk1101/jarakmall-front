@@ -8,21 +8,19 @@ function Detail(props){
     setTimeout(()=>{ setAlert(false) },2000)
   },[])
 
-  let[alert,setAlert] = useState(true)
+  const[alert,setAlert] = useState(true)
 
-  let [count, setCount] = useState(0)
+  const [count, setCount] = useState(0)
 
-  let {itemId} =  useParams();
+  const {itemId} =  useParams();
   // const numericItemId = parseInt(itemId, 10);
   // const realId = numericItemId - 1;
 
-  let findId = props.items.find(function(x){
+  const findId = props.items.find(function(x){
     return x.id == itemId
   });
 
-  let [DetailModalStatus, setDetailModalStatus] = useState(true);
-  let [ReviewModalStatus, setReviewModalStatus] = useState(false);
-  let [QnaModalStatus, setQnaModalStatus] = useState(false);
+  const [modal, setModal] = useState('detail');
   
 
     return(
@@ -43,38 +41,32 @@ function Detail(props){
       <button className="btn btn-danger">주문하기</button> 
     </div>
 
-    <Nav justify variant="tabs" defaultActiveKey="/home">
-      <Nav.Item>
-        <Nav.Link eventKey="link-1" onClick={() => {
-          setDetailModalStatus(true);
-          setReviewModalStatus(false);
-          setQnaModalStatus(false);
-        }}>뭐 상품 상세 이미지 있음 될거같아요</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-2" onClick={() => {
-          setReviewModalStatus(!ReviewModalStatus);
-          setDetailModalStatus(false);
-          setQnaModalStatus(false);
-        }}>여기는 뭐 리뷰라던지..</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-3" onClick={() => {
-          setQnaModalStatus(!QnaModalStatus);
-          setDetailModalStatus(false);
-          setReviewModalStatus(false);
-        }}>여긴 문의사항? 그런게 될거같아요</Nav.Link>
-      </Nav.Item>
-    </Nav>
-    {
-      DetailModalStatus === true ? <DetailModal></DetailModal> : null
-    }
-    {
-      ReviewModalStatus === true ? <ReviewModal></ReviewModal> : null
-    }
-    {
-      QnaModalStatus === true ? <QnaModal></QnaModal> : null
-    }
+    <Nav justify variant="tabs" defaultActiveKey="detail">
+          <Nav.Item>
+            <Nav.Link eventKey="detail" onClick={() => setModal('detail')}>
+              뭐 상품 상세 이미지 있음 될거같아요
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="review" onClick={() => setModal('review')}>
+              여기는 뭐 리뷰라던지..
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="qna" onClick={() => setModal('qna')}>
+              여긴 문의사항? 그런게 될거같아요
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+        {
+          modal === 'detail' && <DetailModal />
+        }
+        {
+          modal === 'review' && <ReviewModal />
+        }
+        {
+          modal === 'qna' && <QnaModal />
+        }
 
   </div>
 </div> 
