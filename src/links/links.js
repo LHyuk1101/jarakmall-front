@@ -15,10 +15,18 @@ const LINKS = {
     ADMIN_PAGE: {
       path: '/admin-page',
       link: '/admin-page',
-    },LOGOUT: {
+    },
+    MYPAGE:{
+      path: '/my-page',
+      link: '/my-page'
+    },
+    LOGOUT: {
       path: '/logout',
       link: '/logout',
-    },
+    },CART: {
+      path: '/carts',
+      link: '/carts',
+    }
   };
   
 export default LINKS;

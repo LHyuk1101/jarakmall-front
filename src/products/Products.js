@@ -1,8 +1,11 @@
 import { Col } from 'react-bootstrap/';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import useProductStore from '../stores/useProductStore.js';
 
-function Products({ items, setItems }) {
+function Products() {
+  const items = useProductStore(state => state.items);
+  const setItems = useProductStore(state => state.setItems);
 
   const chunkedItems = (items, size) => {
     const result = [];
@@ -20,7 +23,7 @@ function Products({ items, setItems }) {
         <div className="row" key={rowIndex}>
           {row.map((item, index) => (
             <Col xs key={index}>
-              <img src={'https://codingapple1.github.io/shop/shoes' + (rowIndex * 3 + index + 1) + '.jpg'} width="150px" height="150px"></img>
+              <img src={'https://codingapple1.github.io/shop/shoes' + (rowIndex * 3 + index + 1) + '.jpg'} width="150px" height="150px" alt={item.title}></img>
               <Link style={{ textDecoration: "none" }} to={'/detail/' + item.id}><h4>{item.title}</h4></Link>
               <p style={{ color: "black" }}>{item.content}</p>
               <p>가격 : {item.price}</p>

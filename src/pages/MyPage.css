@@ -1,4 +1,4 @@
-.Admin {
+.MyPage {
     width: 100%;
     text-align: center;
 }
@@ -11,16 +11,15 @@
 
 .left-menu {
     width: 20%;
-    min-height: 500px; /* 최소 높이 설정 */
+    height: 500px;
     float: left;
 }
 
 .content {
     width: 80%;
+    height: 600px;
     background-color: pink;
     float: left;
-    min-height: 800px; /* 최소 높이 설정 */
-    overflow: auto; /* 내용이 넘칠 경우 스크롤 가능하게 설정 */
 }
 
 .footer {
@@ -28,4 +27,18 @@
     height: 80px;
     background-color: beige;
     clear: both;
+}
+
+.MemberEdit {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.MemberEdit .form-group {
+    margin-bottom: 1rem;
+}
+
+.MemberEdit button {
+    display: block;
+    width: 100%;
 }

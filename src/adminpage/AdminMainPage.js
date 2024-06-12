@@ -2,6 +2,7 @@ import { ListGroup, Stack } from 'react-bootstrap/';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import './Admin.css';
 import LINKS from '../links/links';
+import Members from '../Members';
 
 function AdminPage() {
     const navigate = useNavigate();

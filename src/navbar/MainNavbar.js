@@ -1,8 +1,25 @@
 import { NavDropdown, Navbar, Nav, Form, Container, Button } from 'react-bootstrap/';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import LINKS from '../links/links.js';
+import useUserStore from '../stores/useUserStore.js';
 
 function NavigationBar() {
+
+  const user = useUserStore(state => state.user);
+  const logout = useUserStore(state => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await axios.get('/logout'); // 로그아웃 API 요청
+      logout(); // 상태 초기화
+      navigate(LINKS.HOME.path); // 메인 페이지로 리다이렉션
+    } catch (error) {
+      console.error("로그아웃 실패:", error);
+    }
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -32,24 +49,70 @@ function NavigationBar() {
           </Nav>
           <Nav>
             <Navbar.Text>
-              <Link to={LINKS.LOGIN.path}>
-                <Button variant="outline-dark">로그인</Button>
-              </Link>
+            {
+              !user && (
+                <>
+                  <Link to={LINKS.LOGIN.path}>
+                    <Button variant="outline-dark">로그인</Button>
+                  </Link>
+                </>
+              )
+            }
             </Navbar.Text>
             <Navbar.Text>
-              <Link to={LINKS.LOGOUT.path}>
-                <Button variant="outline-dark">로그아웃</Button>
-              </Link>
+              {
+              user && (
+                <>
+                  <Link to={LINKS.LOGOUT.path}>
+                    <Button variant="outline-dark" onClick={handleLogout}>로그아웃</Button>
+                  </Link>
+                </>
+              )
+            }
             </Navbar.Text>
             <Navbar.Text>
-              <Link to={LINKS.REGISTER.path}>
-                <Button variant="outline-dark">회원가입</Button>
-              </Link>
+              {
+              !user && (
+                <>
+                  <Link to={LINKS.REGISTER.path}>
+                    <Button variant="outline-dark">회원가입</Button>
+                  </Link>
+                </>
+              )
+            }
             </Navbar.Text>
             <Navbar.Text>
-              <Link to={LINKS.ADMIN_PAGE.path}>
-                <Button variant="outline-dark">관리자</Button>
-              </Link>
+            {
+              user && (
+                <>
+                  <Link to={LINKS.MYPAGE.path}>
+                    <Button variant="outline-dark">마이페이지</Button>
+                  </Link>
+                </>
+              )
+            }
+            </Navbar.Text>
+            <Navbar.Text>
+            {
+              user && user.authority === 'ADMIN' && (
+                <Navbar.Text>
+                  <Link to={LINKS.ADMIN_PAGE.path}>
+                    <Button variant="outline-dark">관리자</Button>
+                  </Link>
+                </Navbar.Text>
+              )
+            }
+            </Navbar.Text>
+            <Navbar.Text>
+              {
+              user && (
+                <>
+                  <Link to={LINKS.CART.path}>
+                    <Button variant="outline-dark">장바구니</Button>
+                  </Link>
+                </>
+              )
+            }
             </Navbar.Text>
           </Nav>
           <Form className="d-flex">

@@ -1,6 +1,7 @@
 import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useUserStore from '../stores/useUserStore';
 import axios from 'axios';
 import './LoginPage.css';
 
@@ -11,6 +12,8 @@ function LoginPage(){
         password: ''
     });
 
+    const login = useUserStore(state => state.login);
+
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -19,22 +22,23 @@ function LoginPage(){
           ...prevState,
           [name]: value
         }));
-      };
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('/login', credentials);
-            console.log(response.data);
-            // 로그인 성공 시 "/" 경로로 리다이렉트
-            navigate('/');
+            if (response.data) {
+                sessionStorage.setItem('user', JSON.stringify(response.data)); // 사용자 정보 세션 스토리지에 저장
+                login(response.data); // Zustand 상태 업데이트
+                navigate('/');
+            }
         } catch (error) {
-            console.error('에러터졌어요', error);
+            console.error("Login failed:", error);
         }
     };
 
-
-    return(
+    return (
         <div className='LoginPage'>
             <div>로그인 페이지 뭐 그런 느낌적인 느낌이에요</div>
             <Form onSubmit={handleSubmit}>
@@ -64,8 +68,6 @@ function LoginPage(){
                     로그인
                 </Button>
             </Form>
-
-
         </div>
     );
 }
