@@ -5,6 +5,10 @@ import useUserStore from '../stores/useUserStore';
 import axios from 'axios';
 import './LoginPage.css';
 
+/** 
+ * 로그인페이지
+ */
+
 function LoginPage(){
 
     const [credentials, setCredentials] = useState({

@@ -17,7 +17,6 @@
 
 .content {
     width: 80%;
-    background-color: pink;
     float: left;
     min-height: 800px; /* 최소 높이 설정 */
     overflow: auto; /* 내용이 넘칠 경우 스크롤 가능하게 설정 */

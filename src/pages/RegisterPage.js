@@ -5,6 +5,10 @@ import axios from 'axios';
 import './RegisterPage.css';
 import LINKS from '../links/links';
 
+/** 
+ * 회원가입페이지
+ */
+
 function RegisterPage() {
 
   const [formData, setFormData] = useState({

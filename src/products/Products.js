@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useProductStore from '../stores/useProductStore.js';
 
+/** 
+ * 메인페이지에서 전체 상품들이 로드되는 상품뽑아오는영역
+ * 추후 API호출해서 API로 뽑아와야됨
+ */
+
 function Products() {
   const items = useProductStore(state => state.items);
   const setItems = useProductStore(state => state.setItems);

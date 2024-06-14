@@ -10,11 +10,14 @@ import './App.css';
 import LINKS from './links/links.js';
 import NavigationBar from './navbar/MainNavbar.js';
 import Products from './products/Products.js';
-import Members from './Members.js';
-import MemberEdit from './MemberEdit.js';
+import Members from './pages/Members.js';
+import MemberEdit from './pages/MemberEdit.js';
 import MyPage from './pages/MyPage.js';
 import AdminMain from './adminpage/AdminMain.js';
 import useBannerStore from './stores/useBannerStore';
+import Order from './pages/Order.js';
+import Category from './pages/Category.js';
+import Carts from './pages/Carts.js';
 
 function App() {
 const { mainBanner } = useBannerStore();
@@ -36,7 +39,7 @@ const { mainBanner } = useBannerStore();
         <Route path={LINKS.ADMIN_PAGE.path} element={<AdminPage />}>
           <Route path='main' element={<AdminMain/>} />
           <Route path='member' element={<Members></Members>} />
-          <Route path='category' element={<div>여긴 카테고리관리가 있어야할거같고</div>} />
+          <Route path='category' element={<Category/>} />
           <Route path='item' element={<div>여긴 상품관리를 해야할거같고</div>} />
           <Route path='order' element={<div>여긴 주문을 관리해야할거같아요</div>} />
         </Route>
@@ -51,6 +54,11 @@ const { mainBanner } = useBannerStore();
         <Route path='/about' element={<About />}>
           <Route path='team6' element={<div>안녕하세요 6팀이에요</div>} />
         </Route>
+
+        <Route path='/order' element={<Order />} />
+
+        <Route path='/carts' element={<Carts/>} />
+
         <Route path='*' element={<div>404</div>} />
       </Routes>
     </div>

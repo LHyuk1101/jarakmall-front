@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { NavDropdown, Navbar, Nav, Form, Container, Button } from 'react-bootstrap/';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -5,19 +6,52 @@ import LINKS from '../links/links.js';
 import useUserStore from '../stores/useUserStore.js';
 
 function NavigationBar() {
-
   const user = useUserStore(state => state.user);
   const logout = useUserStore(state => state.logout);
   const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('/categories');
+        // console.log('전체 카테고리 로드:', response.data);  // 콘솔 로그 추가
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Failed to fetch categories", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleLogout = async () => {
     try {
-      await axios.get('/logout'); // 로그아웃 API 요청
-      logout(); // 상태 초기화
-      navigate(LINKS.HOME.path); // 메인 페이지로 리다이렉션
+      await axios.post('/members-logout');
+      logout();
+      navigate(LINKS.HOME.path);
     } catch (error) {
       console.error("로그아웃 실패:", error);
     }
+  };
+
+  const renderSubCategories = (parentId) => {
+    const subCategories = categories.filter(category => category.parentId === parentId);
+    // console.log(`자식카테고리 로드 ${parentId}:`, subCategories);  // 콘솔 로그 추가
+    return subCategories.map(subCategory => (
+      <NavDropdown.Item key={subCategory.id} href={`/categories/${subCategory.id}`}>
+        {subCategory.name}
+      </NavDropdown.Item>
+    ));
+  };
+
+  const renderCategories = () => {
+    const parentCategories = categories.filter(category => category.parentId === null);
+    // console.log('부모카테고리 로드:', parentCategories);  // 콘솔 로그 추가
+    return parentCategories.map(category => (
+      <NavDropdown title={category.name} id={`navbarScrollingDropdown-${category.id}`} key={category.id}>
+        {renderSubCategories(category.id)}
+      </NavDropdown>
+    ));
   };
 
   return (
@@ -27,92 +61,51 @@ function NavigationBar() {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-            <NavDropdown title="MAN" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">머슬핏 티셔츠</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">개쩌는 반바지</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">상당한 자켓</NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="WOMAN" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">엄청난 셔츠</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">굉장한 블라우스</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">기가막힌 슬랙스</NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="ACCESSORIES" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">비싼 목걸이</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">진짜비싼 반지</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">롤렉스</NavDropdown.Item>
-            </NavDropdown>
+            {renderCategories()}
             <Nav.Link href="#" disabled>비활성화</Nav.Link>
           </Nav>
           <Nav>
             <Navbar.Text>
-            {
-              !user && (
-                <>
-                  <Link to={LINKS.LOGIN.path}>
-                    <Button variant="outline-dark">로그인</Button>
-                  </Link>
-                </>
-              )
-            }
+              {!user && (
+                <Link to={LINKS.LOGIN.path}>
+                  <Button variant="outline-dark">로그인</Button>
+                </Link>
+              )}
             </Navbar.Text>
             <Navbar.Text>
-              {
-              user && (
-                <>
-                  <Link to={LINKS.LOGOUT.path}>
-                    <Button variant="outline-dark" onClick={handleLogout}>로그아웃</Button>
-                  </Link>
-                </>
-              )
-            }
+              {user && (
+                <Link to={LINKS.LOGOUT.path}>
+                  <Button variant="outline-dark" onClick={handleLogout}>로그아웃</Button>
+                </Link>
+              )}
             </Navbar.Text>
             <Navbar.Text>
-              {
-              !user && (
-                <>
-                  <Link to={LINKS.REGISTER.path}>
-                    <Button variant="outline-dark">회원가입</Button>
-                  </Link>
-                </>
-              )
-            }
+              {!user && (
+                <Link to={LINKS.REGISTER.path}>
+                  <Button variant="outline-dark">회원가입</Button>
+                </Link>
+              )}
             </Navbar.Text>
             <Navbar.Text>
-            {
-              user && (
-                <>
-                  <Link to={LINKS.MYPAGE.path}>
-                    <Button variant="outline-dark">마이페이지</Button>
-                  </Link>
-                </>
-              )
-            }
+              {user && (
+                <Link to={LINKS.MYPAGE.path}>
+                  <Button variant="outline-dark">마이페이지</Button>
+                </Link>
+              )}
             </Navbar.Text>
+            {user && user.authority === 'ADMIN' && (
+              <Navbar.Text>
+                <Link to={LINKS.ADMIN_PAGE.path}>
+                  <Button variant="outline-dark">관리자</Button>
+                </Link>
+              </Navbar.Text>
+            )}
             <Navbar.Text>
-            {
-              user && user.authority === 'ADMIN' && (
-                <Navbar.Text>
-                  <Link to={LINKS.ADMIN_PAGE.path}>
-                    <Button variant="outline-dark">관리자</Button>
-                  </Link>
-                </Navbar.Text>
-              )
-            }
-            </Navbar.Text>
-            <Navbar.Text>
-              {
-              user && (
-                <>
-                  <Link to={LINKS.CART.path}>
-                    <Button variant="outline-dark">장바구니</Button>
-                  </Link>
-                </>
-              )
-            }
+              {user && (
+                <Link to={LINKS.CART.path}>
+                  <Button variant="outline-dark">장바구니</Button>
+                </Link>
+              )}
             </Navbar.Text>
           </Nav>
           <Form className="d-flex">

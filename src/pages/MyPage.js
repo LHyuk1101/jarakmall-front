@@ -2,6 +2,9 @@ import { ListGroup, Stack } from 'react-bootstrap/';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import './MyPage.css';
 import LINKS from '../links/links';
+/** 
+ * 마이페이지 메인화면 메뉴통해서 기능접근
+ */
 
 function MyPage() {
     const navigate = useNavigate();
