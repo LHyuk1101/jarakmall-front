@@ -39,7 +39,7 @@ function Products() {
       <button onClick={() => {
         axios.get('https://codingapple1.github.io/shop/data2.json')
           .then((result) => {
-            console.log(result);
+            // console.log(result);
             const copy = [...items, ...result.data];
             setItems(copy);
           })

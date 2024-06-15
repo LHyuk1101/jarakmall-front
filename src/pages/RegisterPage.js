@@ -34,7 +34,7 @@ function RegisterPage() {
     e.preventDefault();
     try {
       const response = await axios.post('/register', formData);
-      console.log(response.data);
+      // console.log(response.data);
       navigate(LINKS.HOME.path);
     } catch (error) {
       console.error('에러터졌어요', error);

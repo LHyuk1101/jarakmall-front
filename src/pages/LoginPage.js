@@ -34,7 +34,7 @@ function LoginPage() {
         e.preventDefault();
         try {
             const response = await axios.post('/login', credentials);
-            console.log('Login response:', response.data); // 로그인 응답 디버깅
+            // console.log('로그인 정보:', response.data);
             // 응답에 JWT 토큰이 포함되어 있지 않으므로 쿠키에서 JWT 토큰을 읽습니다.
             const jwtToken = Cookies.get('jwtToken');
             if (jwtToken) {
@@ -45,11 +45,11 @@ function LoginPage() {
                 setErrorMessage('JWT token is not found in the cookies.'); // JWT 토큰이 쿠키에 없을 때의 에러 처리
             }
         } catch (error) {
-            console.error("Login failed:", error);
+            console.error("Login 실패:", error);
             if (error.response && error.response.data) {
                 setErrorMessage(error.response.data.message); // 서버에서 반환된 에러 메시지 설정
             } else {
-                setErrorMessage('Login failed. Please try again.'); // 일반적인 에러 메시지 설정
+                setErrorMessage('Login 실패. 다시해보세요.'); // 일반적인 에러 메시지 설정
             }
         }
     };

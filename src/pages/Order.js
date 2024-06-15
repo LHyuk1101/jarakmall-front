@@ -43,10 +43,9 @@ function Order() {
     const fetchAddresses = async () => {
         try {
             const response = await axios.get('/addresses', { headers: { 'Authorization': `Bearer ${jwtToken}` } });
-            console.log('Fetched addresses:', response.data); // 서버로부터 받아온 데이터 구조 확인
             setAddresses(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
-            console.error('Failed to fetch addresses:', error);
+            console.error('전체 주소 데이터 못가져옴', error);
             setAddresses([]); // 오류 발생 시 빈 배열로 초기화
         }
     };
@@ -62,15 +61,15 @@ function Order() {
     };
 
     const handleAddAddress = async () => {
-        console.log('User:', user); // 유저 정보 확인
-        console.log('JWT Token:', jwtToken); // JWT 토큰 확인
+        // console.log('User:', user); // 유저 정보 확인
+        // console.log('JWT Token:', jwtToken); // JWT 토큰 확인
         if (!jwtToken || jwtToken.split('.').length !== 3) {
             console.error('Invalid JWT Token');
             return;
         }
         try {
             const response = await axios.post('/addresses', newAddress, { headers: { 'Authorization': `Bearer ${jwtToken}` } });
-            console.log('Added address:', response.data); // 추가된 데이터 구조 확인
+            // console.log('추가한 데이터 형식이?:', response.data); // 추가된 데이터 구조 확인
             setAddresses([...addresses, response.data]);
             setNewAddress({
                 recipientName: '',
@@ -83,7 +82,7 @@ function Order() {
             });
             setShowAddAddressModal(false);
         } catch (error) {
-            console.error('Failed to add address:', error);
+            console.error('주소추가 실패:', error);
         }
     };
 
@@ -108,7 +107,7 @@ function Order() {
             });
             setShowEditAddressModal(true);
         } catch (error) {
-            console.error('Failed to fetch address for editing:', error);
+            console.error('수정창:', error);
         }
     };
 
@@ -118,7 +117,7 @@ function Order() {
             fetchAddresses();
             setShowEditAddressModal(false);
         } catch (error) {
-            console.error('Failed to edit address:', error);
+            console.error('수정실패:', error);
         }
     };
 
@@ -129,7 +128,7 @@ function Order() {
             await axios.delete(`/addresses/${id}`, { headers: { 'Authorization': `Bearer ${jwtToken}` } });
             setAddresses(addresses.filter(address => address.id !== id));
         } catch (error) {
-            console.error('Failed to delete address:', error);
+            console.error('삭제실패:', error);
         }
     };
 
@@ -204,7 +203,7 @@ function Order() {
                 <Modal.Body>
                     <ListGroup>
                         {addresses.length > 0 ? addresses.filter(address => {
-                            console.log('Filtering address:', address);
+                            // console.log('주소발라내기:', address);
                             return address.memberId === user.id;
                         }).map((address, index) => (
                             <ListGroup.Item key={index} action onClick={() => handleSelectAddress(address)} className="d-flex justify-content-between align-items-center">

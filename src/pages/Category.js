@@ -20,7 +20,7 @@ function Category() {
     const fetchCategories = async () => {
         try {
             const response = await axios.get('/categories');
-            console.log('Fetched categories:', response.data); // 콘솔 로그 추가
+            // console.log('카테고리 로드 :', response.data);
             setCategories(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
             console.error("Failed to fetch categories:", error);
