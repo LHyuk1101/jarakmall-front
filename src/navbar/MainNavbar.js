@@ -16,9 +16,10 @@ function NavigationBar() {
       try {
         const response = await axios.get('/categories');
         // console.log('전체 카테고리 로드:', response.data);  // 콘솔 로그 추가
-        setCategories(response.data);
+        setCategories(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error("Failed to fetch categories", error);
+        setCategories([]);
       }
     };
     fetchCategories();
@@ -65,34 +66,34 @@ function NavigationBar() {
             <Nav.Link href="#" disabled>비활성화</Nav.Link>
           </Nav>
           <Nav>
-            <Navbar.Text>
-              {!user && (
+            {!user && (
+              <Navbar.Text>
                 <Link to={LINKS.LOGIN.path}>
                   <Button variant="outline-dark">로그인</Button>
                 </Link>
-              )}
-            </Navbar.Text>
-            <Navbar.Text>
-              {user && (
+              </Navbar.Text>
+            )}
+            {user && (
+              <Navbar.Text>
                 <Link to={LINKS.LOGOUT.path}>
                   <Button variant="outline-dark" onClick={handleLogout}>로그아웃</Button>
                 </Link>
-              )}
-            </Navbar.Text>
-            <Navbar.Text>
-              {!user && (
+              </Navbar.Text>
+            )}
+            {!user && (
+              <Navbar.Text>
                 <Link to={LINKS.REGISTER.path}>
                   <Button variant="outline-dark">회원가입</Button>
                 </Link>
-              )}
-            </Navbar.Text>
-            <Navbar.Text>
-              {user && (
+              </Navbar.Text>
+            )}
+            {user && (
+              <Navbar.Text>
                 <Link to={LINKS.MYPAGE.path}>
                   <Button variant="outline-dark">마이페이지</Button>
                 </Link>
-              )}
-            </Navbar.Text>
+              </Navbar.Text>
+            )}
             {user && user.authority === 'ADMIN' && (
               <Navbar.Text>
                 <Link to={LINKS.ADMIN_PAGE.path}>
@@ -100,13 +101,13 @@ function NavigationBar() {
                 </Link>
               </Navbar.Text>
             )}
-            <Navbar.Text>
-              {user && (
+            {user && (
+              <Navbar.Text>
                 <Link to={LINKS.CART.path}>
                   <Button variant="outline-dark">장바구니</Button>
                 </Link>
-              )}
-            </Navbar.Text>
+              </Navbar.Text>
+            )}
           </Nav>
           <Form className="d-flex">
             <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />

@@ -18,38 +18,57 @@ function Category() {
     }, []);
 
     const fetchCategories = async () => {
-        const response = await axios.get('/categories');
-        setCategories(response.data);
+        try {
+            const response = await axios.get('/categories');
+            console.log('Fetched categories:', response.data); // 콘솔 로그 추가
+            setCategories(Array.isArray(response.data) ? response.data : []);
+        } catch (error) {
+            console.error("Failed to fetch categories:", error);
+            setCategories([]);
+        }
     };
 
     const handleAddMainCategory = async () => {
-        await axios.post('/categories', { name: newCategoryName });
-        setShowMainAddModal(false);
-        setNewCategoryName('');
-        fetchCategories();
-        window.location.reload();
+        try {
+            await axios.post('/categories', { name: newCategoryName });
+            setShowMainAddModal(false);
+            setNewCategoryName('');
+            fetchCategories();
+        } catch (error) {
+            console.error("Failed to add main category:", error);
+        }
     };
 
     const handleAddSubCategory = async () => {
-        await axios.post('/categories', { name: newCategoryName, parentId: selectedMainCategory });
-        setShowSubAddModal(false);
-        setNewCategoryName('');
-        fetchCategories();
-        window.location.reload();
+        try {
+            await axios.post('/categories', { name: newCategoryName, parentId: selectedMainCategory });
+            setShowSubAddModal(false);
+            setNewCategoryName('');
+            fetchCategories();
+        } catch (error) {
+            console.error("Failed to add sub category:", error);
+        }
     };
 
     const handleEditCategory = async () => {
-        await axios.put(`/categories/${editCategoryId}`, { name: editCategoryName });
-        setEditCategoryId(null);
-        setEditCategoryName('');
-        fetchCategories();
-        window.location.reload();
+        try {
+            await axios.put(`/categories/${editCategoryId}`, { name: editCategoryName });
+            setEditCategoryId(null);
+            setEditCategoryName('');
+            fetchCategories();
+        } catch (error) {
+            console.error("Failed to edit category:", error);
+        }
     };
 
     const handleDeleteCategory = async (id) => {
         if (window.confirm("정말 삭제하시겠어요?")) {
-            await axios.delete(`/categories/${id}`);
-            fetchCategories();
+            try {
+                await axios.delete(`/categories/${id}`);
+                fetchCategories();
+            } catch (error) {
+                console.error("Failed to delete category:", error);
+            }
         }
     };
 

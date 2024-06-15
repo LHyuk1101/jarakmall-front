@@ -136,6 +136,18 @@ button {
 
 .list-group-item {
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-group-item .btn {
+  margin-left: 10px;
 }
 
 /* 반응형 디자인 */

@@ -27,9 +27,9 @@ function Detail() {
             storedCartItems[existingItemIndex].quantity += 1;
             localStorage.setItem(cartKey, JSON.stringify(storedCartItems));
           } else {
-            const confirmGoToCart = window.confirm("장바구니로 이동하시겠습니까?");
+            const confirmGoToCart = window.confirm("취소를 누르면 장바구니로 이동하시겠습니까?");
             if (confirmGoToCart) {
-              navigate('/carts');
+              navigate('/cart');
               return;
             }
           }
@@ -69,6 +69,7 @@ function Detail() {
       }
 
       localStorage.setItem(cartKey, JSON.stringify(storedCartItems));
+      window.alert("장바구니에 추가되었습니다.");
     } else {
       window.alert("지금 당장 쌈@뽕하게 로그인하고 장바구니에 담으세요!");
     }
