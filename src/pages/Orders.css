@@ -1,0 +1,228 @@
+/* 기본 스타일 */
+.order-summary {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer; /* 마우스 오버 시 클릭 버튼 */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.order-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer; /* 마우스 오버 시 클릭 버튼 */
+    transition: transform 0.3s, box-shadow 0.3s; /* 애니메이션 추가 */
+}
+
+.order-item-image:hover {
+    transform: scale(1.05); /* 마우스 오버 시 이미지 확대 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 마우스 오버 시 그림자 추가 */
+}
+
+.order-summary:hover {
+    background-color: #f1f1f1; /* 마우스 오버 시 배경 색상 변경 */
+    color: #333; /* 마우스 오버 시 글자 색상 변경 */
+    text-decoration: underline; /* 마우스 오버 시 밑줄 표시 */
+}
+
+.order-orders-item, .order-orders-top {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    align-items: center; /* 중앙 정렬 추가 */
+}
+
+.order-orders-item:last-child {
+    border-bottom: none;
+}
+
+.order-orders-top {
+    font-weight: bold;
+    background-color: #e9f5fc;
+    border-radius: 5px;
+}
+
+.order-col-1, .order-col-2, .order-col-3, .order-col-4, .order-col-6 {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 추가 */
+    align-items: center;
+    padding: 5px;
+    text-align: center; /* 중앙 정렬 추가 */
+}
+
+.order-col-1 {
+    width: 8.3333%;
+}
+
+.order-col-2 {
+    width: 16.6667%;
+}
+
+.order-col-3 {
+    width: 25%;
+}
+
+.order-col-4 {
+    width: 33.3333%;
+}
+
+.order-col-6 {
+    width: 50%;
+}
+
+.order-summary-text {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+/* 추가 스타일 */
+.order-account-header {
+    border-bottom: 2px solid #dbdbdb;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.order-account-header .order-subtitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 버튼 스타일 */
+.order-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.order-btn:hover {
+    cursor: pointer;
+}
+
+.order-btn-primary {
+    background-color: #00d1b2;
+    color: white;
+    border: 1px solid #00d1b2;
+}
+
+.order-btn-primary:hover {
+    background-color: #00c4a7;
+    color: white;
+    border: 1px solid #00c4a7;
+}
+
+.order-cancel-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-cancel-button {
+    background-color: #f8d7da; /* 연한 빨간색 배경 */
+    color: #721c24; /* 진한 빨간색 텍스트 */
+    border: 1px solid #f5c6cb; /* 연한 빨간색 테두리 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.order-cancel-button:hover {
+    background-color: #f5c6cb; /* 마우스 오버 시 더 진한 빨간색 */
+    color: #721c24; /* 마우스 오버 시 진한 빨간색 텍스트 */
+}
+
+.order-cancel-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(114, 28, 36, 0.25); /* 진한 빨간색 그림자 */
+}
+
+.order-cancel-button:disabled {
+    background-color: #ddd; /* 비활성화 시 회색 배경 */
+    color: #aaa; /* 비활성화 시 회색 텍스트 */
+    border: 1px solid #ddd; /* 비활성화 시 회색 테두리 */
+    cursor: not-allowed; /* 비활성화 시 커서 모양 변경 */
+}
+
+/* 모달 스타일 */
+.order-modal-content {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.order-modal-content .order-buttons {
+    justify-content: flex-end;
+}
+
+.order-modal-content .order-buttons .order-btn {
+    margin-left: 10px;
+}
+
+.order-modal-content p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 이전/다음 버튼 스타일 */
+.order-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.order-pagination button {
+    background-color: #00d1b2;
+    color: white;
+    border: 1px solid #00c4a7;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.order-pagination button:hover {
+    background-color: #00c4a7;
+}
+
+.order-pagination span {
+    margin: 0 10px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.order-pagination button[disabled] {
+    background-color: #ddd;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
+
+/* 주문 내역이 없을 때 */
+.no-orders {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .order-orders-item,
+    .order-orders-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .order-buttons {
+        flex-direction: column;
+    }
+
+    .order-buttons button {
+        margin: 10px 0;
+    }
+}

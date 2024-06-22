@@ -1,0 +1,50 @@
+.AdminItemPage_container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.AdminItemPage_container h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.AdminItemPage_add-product-button {
+    margin-bottom: 20px;
+}
+
+.AdminItemPage_thumbnail-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Modal Styles */
+.AdminItemPage_modal-title {
+    font-weight: bold;
+}
+
+.AdminItemPage_modal-body .AdminItemPage_form-group {
+    margin-bottom: 15px;
+}
+
+.AdminItemPage_modal-body .AdminItemPage_form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.AdminItemPage_modal-body .AdminItemPage_form-control {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.AdminItemPage_modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Table Styles */
+.AdminItemPage_table th, .AdminItemPage_table td {
+    vertical-align: middle;
+    text-align: center;
+}

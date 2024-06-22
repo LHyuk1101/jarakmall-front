@@ -1,0 +1,26 @@
+/* SearchResults.css */
+.searchResults-Products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.searchResults-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+  
+.searchResults-Products img {
+    display: block;
+    margin: 0 auto;
+}
+  
+.searchResults-Products h4 {
+    text-align: center;
+}
+  
+.searchResults-Products p {
+    text-align: center;
+}

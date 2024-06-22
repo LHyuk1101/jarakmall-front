@@ -1,21 +1,20 @@
-.admin-main {
-    padding: 20px;
-  }
-  
-  .admin-info {
-    text-align: center;
-  }
-  
-  .stat-card {
-    margin-bottom: 20px;
-  }
-  
-  .banner-card {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .custom-file-upload {
-    cursor: pointer;
-  }
-  
+.AdminMain_admin-main {
+  padding: 20px;
+}
+
+.AdminMain_admin-info {
+  text-align: center;
+}
+
+.AdminMain_stat-card {
+  margin-bottom: 20px;
+}
+
+.AdminMain_banner-card {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.AdminMain_custom-file-upload {
+  cursor: pointer;
+}

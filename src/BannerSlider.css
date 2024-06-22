@@ -1,0 +1,6 @@
+/* src/components/BannerSlider.css */
+.banner-image {
+    width: 100%;
+    transition: opacity 1s ease-in-out; /* 커스터마이징된 전환 효과 */
+  }
+  

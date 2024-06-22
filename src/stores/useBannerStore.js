@@ -1,12 +1,14 @@
-import {create} from 'zustand';
-import BgImg from '../images/bg.png'; // BgImg를 임포트
+import { create } from 'zustand';
+import Frame2 from '../images/Frame2.png';
+import Frame3 from '../images/Frame3.png';
+import Frame4 from '../images/Frame4.png';
+import Frame5 from '../images/Frame5.png';
+import Frame6 from '../images/Frame6.png';
 
 const useBannerStore = create(set => ({
-  mainBanner: localStorage.getItem('mainBanner') || BgImg,
-  setMainBanner: (banner) => {
-    localStorage.setItem('mainBanner', banner);
-    set({ mainBanner: banner });
-  }
+  banners: [Frame2, Frame3, Frame4, Frame5, Frame6],
+  currentBanner: 0,
+  setCurrentBanner: (index) => set({ currentBanner: index }),
 }));
 
 export default useBannerStore;
