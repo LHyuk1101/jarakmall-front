@@ -1,4 +1,4 @@
-let data = [
+const data = [
     {
       id : 1,
       title : "쌈@뽕한 신발1",
@@ -42,6 +42,12 @@ let data = [
       id : 7,
       title : "쌈@뽕한 신발7",
       content : "깔@롱 뒤G는 상품소개7",
+      price : 161616
+    },
+    {
+      id : 8,
+      title : "쌈@뽕한 신발8",
+      content : "깔@롱 뒤G는 상품소개8",
       price : 161616
     }
   ];

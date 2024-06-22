@@ -1,109 +1,152 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import {Nav,Card,Button} from 'react-bootstrap/';
+import { useParams, useNavigate } from "react-router-dom";
+import { Nav, Button, DropdownButton, Dropdown } from 'react-bootstrap/';
+import useProductStore from '../stores/useProductStore.js';
+import useUserStore from '../stores/useUserStore.js';
+import './Detail.css';
 
-function Detail(props){
+function Detail() {
+  const items = useProductStore(state => state.items);
+  const { itemId } = useParams();
+  const findId = items.find((x) => x.id == itemId);
+  const navigate = useNavigate();
+  const user = useUserStore(state => state.user); 
 
-  useEffect(() => {
-    setTimeout(()=>{ setAlert(false) },2000)
-  },[])
+  const [modal, setModal] = useState('detail');
 
-  let[alert,setAlert] = useState(true)
+  const handleBuyNow = () => {
+    if (user) {
+      const cartKey = `cart_${user.id}`;
+      const storedCartItems = JSON.parse(localStorage.getItem(cartKey)) || [];
+      const existingItemIndex = storedCartItems.findIndex(item => item.id === findId.id);
 
-  let [count, setCount] = useState(0)
-
-  let {itemId} =  useParams();
-  // const numericItemId = parseInt(itemId, 10);
-  // const realId = numericItemId - 1;
-
-  let findId = props.items.find(function(x){
-    return x.id == itemId
-  });
-
-  let [DetailModalStatus, setDetailModalStatus] = useState(true);
-  let [ReviewModalStatus, setReviewModalStatus] = useState(false);
-  let [QnaModalStatus, setQnaModalStatus] = useState(false);
-  
-
-    return(
-      <div className="container">
-        {
-          alert == true ? <div className="alert">
-          2초 이내 구매하면 할인 각이 보이긴 함
-        </div> : null
+      if (storedCartItems.length > 0) {
+        if (existingItemIndex >= 0) {
+          const confirmAddToCart = window.confirm("이미 장바구니에 담은 상품입니다 추가로 구매하시겠습니까?");
+          if (confirmAddToCart) {
+            storedCartItems[existingItemIndex].quantity += 1;
+            localStorage.setItem(cartKey, JSON.stringify(storedCartItems));
+          } else {
+            const confirmGoToCart = window.confirm("취소를 누르면 장바구니로 이동하시겠습니까?");
+            if (confirmGoToCart) {
+              navigate('/cart');
+              return;
+            }
+          }
+        } else {
+          const confirmAddToCart = window.confirm("장바구니에 있는 상품을 함께 구매하시겠습니까?");
+          if (confirmAddToCart) {
+            storedCartItems.push({ ...findId, quantity: 1 });
+            localStorage.setItem(cartKey, JSON.stringify(storedCartItems));
+            navigate('/order', { state: { cartItems: storedCartItems, productTotal: calculateTotal(storedCartItems), shipping: 2500, total: calculateTotal(storedCartItems) + 2500 } });
+            return;
+          } else {
+            navigate('/order', { state: { cartItems: [{ ...findId, quantity: 1 }], productTotal: findId.price, shipping: 2500, total: findId.price + 2500 } });
+            return;
+          }
         }
-  <div className="row">
-    <div className="col-md-6">
-      <img src={'https://codingapple1.github.io/shop/shoes'+findId.id+'.jpg'} width="100%" />
+      } else {
+        navigate('/order', { state: { cartItems: [{ ...findId, quantity: 1 }], productTotal: findId.price, shipping: 2500, total: findId.price + 2500 } });
+      }
+    } else {
+      window.alert("지금 당장 로그인하고 쌈@뽕하게 주문하세요!");
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (user) {
+      const cartKey = `cart_${user.id}`;
+      const storedCartItems = JSON.parse(localStorage.getItem(cartKey)) || [];
+      const existingItemIndex = storedCartItems.findIndex(item => item.id === findId.id);
+
+      if (existingItemIndex >= 0) {
+        const confirmIncreaseQuantity = window.confirm("이미 장바구니에 있는 상품 입니다. 추가로 담으시겠습니까?");
+        if (confirmIncreaseQuantity) {
+          storedCartItems[existingItemIndex].quantity += 1;
+        }
+      } else {
+        storedCartItems.push({ ...findId, quantity: 1 });
+      }
+
+      localStorage.setItem(cartKey, JSON.stringify(storedCartItems));
+      window.alert("장바구니에 추가되었습니다.");
+    } else {
+      window.alert("지금 당장 쌈@뽕하게 로그인하고 장바구니에 담으세요!");
+    }
+  };
+
+  const calculateTotal = (items) => {
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  return (
+    <div className="container detail-container">
+      <div className="row">
+        <div className="col-md-6 detail-image">
+          <div className="image-placeholder"><img src={'https://codingapple1.github.io/shop/shoes' + findId.id + '.jpg'} width="100%" /></div>
+        </div>
+        <div className="col-md-6 detail-info">
+          <h2>{findId.title}</h2>
+          <p className="price">{findId.price.toLocaleString()} 원</p>
+
+          <DropdownButton id="size-dropdown" title="사이즈">
+            <Dropdown.Item>Small</Dropdown.Item>
+            <Dropdown.Item>Medium</Dropdown.Item>
+            <Dropdown.Item>Large</Dropdown.Item>
+          </DropdownButton>
+          <DropdownButton id="color-dropdown" title="색상">
+            <Dropdown.Item>Red</Dropdown.Item>
+            <Dropdown.Item>Blue</Dropdown.Item>
+            <Dropdown.Item>Green</Dropdown.Item>
+          </DropdownButton>
+          <p className="total-price">총 상품 금액 <span>0</span></p>
+          <div className="buttons">
+            <Button variant="outline-dark" className="add-to-cart" onClick={handleAddToCart}>Add to cart</Button>
+            <Button variant="outline-dark" className="buy-now" onClick={handleBuyNow}>Buy now</Button>
+          </div>
+        </div>
+      </div>
+      <Nav justify variant="tabs" defaultActiveKey="detail">
+        <Nav.Item>
+          <Nav.Link eventKey="detail" onClick={() => setModal('detail')}>상품 상세</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="review" onClick={() => setModal('review')}>리뷰</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="qna" onClick={() => setModal('qna')}>문의사항</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      {modal === 'detail' && <DetailModal />}
+      {modal === 'review' && <ReviewModal />}
+      {modal === 'qna' && <QnaModal />}
     </div>
-    <div className="col-md-6">
-      <h4 className="pt-5">{findId.title}</h4>
-      <p>{findId.content}</p>
-      <p>{findId.price}</p>
-      <button className="btn btn-danger">주문하기</button> 
-    </div>
+  );
 
-    <Nav justify variant="tabs" defaultActiveKey="/home">
-      <Nav.Item>
-        <Nav.Link eventKey="link-1" onClick={() => {
-          setDetailModalStatus(true);
-          setReviewModalStatus(false);
-          setQnaModalStatus(false);
-        }}>뭐 상품 상세 이미지 있음 될거같아요</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-2" onClick={() => {
-          setReviewModalStatus(!ReviewModalStatus);
-          setDetailModalStatus(false);
-          setQnaModalStatus(false);
-        }}>여기는 뭐 리뷰라던지..</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-3" onClick={() => {
-          setQnaModalStatus(!QnaModalStatus);
-          setDetailModalStatus(false);
-          setReviewModalStatus(false);
-        }}>여긴 문의사항? 그런게 될거같아요</Nav.Link>
-      </Nav.Item>
-    </Nav>
-    {
-      DetailModalStatus === true ? <DetailModal></DetailModal> : null
-    }
-    {
-      ReviewModalStatus === true ? <ReviewModal></ReviewModal> : null
-    }
-    {
-      QnaModalStatus === true ? <QnaModal></QnaModal> : null
-    }
+  function DetailModal() {
+    return (
+      <div className="DetailModal">
+        <div>상세페이지 모달</div>
+        <p>{findId.title}</p>
+      </div>
+    );
+  }
 
-  </div>
-</div> 
-    )
-    function DetailModal(){
-      return(
-        <div className="DetailModal">
-          <div>상세페이지 모달</div>
-          <p>{findId.title}</p>
-        </div>
-      );
-    }
+  function ReviewModal() {
+    return (
+      <div className="ReviewModal">
+        <div>리뷰페이지 모달</div>
+      </div>
+    );
+  }
 
-    function ReviewModal(){
-      return(
-        <div className="ReviewModal">
-          <div>리뷰페이지 모달</div>
-        </div>
-      );
-    }
-
-    function QnaModal(){
-      return(
-        <div className="QnaModal">
-          <div>QnA 모달</div>
-        </div>
-      );
-    }
+  function QnaModal() {
+    return (
+      <div className="QnaModal">
+        <div>QnA 모달</div>
+      </div>
+    );
+  }
 }
-
 
 export default Detail;

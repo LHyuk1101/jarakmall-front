@@ -1,0 +1,30 @@
+.category-container {
+    padding: 20px;
+}
+
+.category-container h2 {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.category-container button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.category-list {
+    margin-top: 20px;
+}
+
+.category-item {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.indent {
+    margin-right: 10px;
+}
+
+button {
+    margin-left: 10px;
+}

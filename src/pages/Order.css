@@ -1,0 +1,163 @@
+.order-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.order-container h1 {
+  font-family: 'Cormorant', serif;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.order-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shipping-info,
+.payment-info {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.shipping-info h2,
+.payment-info h2 {
+  font-family: 'Cormorant', serif;
+  border-bottom: 1px solid #000;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.shipping-info .form-group,
+.payment-info .form-group {
+  margin-bottom: 15px;
+}
+
+.shipping-info .form-label,
+.payment-info .form-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.shipping-info .form-control,
+.payment-info .form-control {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.d-flex .form-control {
+  flex: 1;
+  margin-right: 10px;
+}
+
+button {
+  white-space: nowrap;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-body .form-group {
+  margin-bottom: 15px;
+}
+
+.modal-body .form-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.modal-body .form-control {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* 추가 스타일 */
+.shipping-info {
+  border-right: none;
+}
+
+.payment-info {
+  border-left: none;
+}
+
+.payment-info p {
+  margin-bottom: 10px;
+}
+
+.payment-info .product-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.payment-info .product-item:last-child {
+  border-bottom: none;
+}
+
+.payment-info .product-title {
+  font-weight: bold;
+}
+
+.payment-info .product-price,
+.payment-info .product-quantity {
+  margin-left: 10px;
+}
+
+.payment-info .total-amount {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.payment-info button {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+}
+
+/* Modal 스타일 */
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.list-group-item {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-group-item .btn {
+  margin-left: 10px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .order-form {
+    flex-direction: column;
+  }
+
+  .shipping-info,
+  .payment-info {
+    margin: 10px 0;
+  }
+}
