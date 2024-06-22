@@ -1,0 +1,161 @@
+/* General Styles */
+.admin-section-unique {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.admin-block-unique {
+    margin-bottom: 20px;
+}
+
+.admin-account-header-unique {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-subtitle-unique {
+    font-size: 24px;
+    color: #343a40;
+}
+
+/* Admin Level Styles */
+.admin-level-unique {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.admin-level-item-unique {
+    flex: 1;
+    margin: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.admin-heading-unique {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.admin-title-unique {
+    font-size: 22px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Order Container Styles */
+.admin-orders-container-unique {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-order-orders-top {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 2fr 2fr;
+    padding: 10px 0;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    background-color: #e9ecef;
+}
+
+.admin-order-orders-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 2fr 2fr;
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+    align-items: center;
+}
+
+.admin-order-col {
+    text-align: center;
+}
+
+.admin-order-summary-unique {
+    font-weight: bold;
+}
+
+.admin-cancelled-unique {
+    background-color: #f8d7da;
+}
+
+.admin-status-select-unique {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+}
+
+.admin-status-select-unique:disabled {
+    background-color: #e9ecef;
+}
+
+/* Pagination Styles */
+.admin-order-pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.admin-order-pagination button {
+    margin: 0 5px;
+}
+
+/* Cancel Button Styles */
+.admin-order-cancel-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.admin-order-cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.admin-order-cancel-button:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .admin-order-orders-top, .admin-order-orders-item {
+        grid-template-columns: 1fr 2fr 2fr 2fr;
+    }
+
+    .admin-order-summary-unique {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-level-unique {
+        flex-direction: column;
+    }
+
+    .admin-level-item-unique {
+        margin: 10px 0;
+    }
+
+    .admin-order-orders-top, .admin-order-orders-item {
+        font-size: 14px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .admin-order-pagination {
+        flex-direction: column;
+    }
+
+    .admin-order-pagination button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

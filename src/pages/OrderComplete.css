@@ -1,0 +1,87 @@
+.order-complete-container-unique {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    font-size: 1.3rem;
+}
+
+.order-complete-text {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.order-complete-unique {
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-text-unique {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.icon-text-unique .fa-circle-check {
+    margin-bottom: 1rem;
+}
+
+.buttons-container-unique .btn {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.buttons-container-unique .order-detail-button-unique {
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    color: #000;
+    border-width: 1px;
+    border-color: #dbdbdb;
+    cursor: pointer;
+    font-family: 'NanumGothic', sans-serif;
+    font-size: 1.1rem;
+}
+
+.buttons-container-unique .order-detail-button-unique:hover {
+    background-color: #f1f1f1;
+    border-color: #c0c0c0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.buttons-container-unique .order-button-unique {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.buttons-container-unique .order-button-unique:first-child {
+    margin-top: 2rem;
+}
+
+.buttons-container-unique .btn-primary {
+    background-color: #00d1b2;
+    border-color: #00d1b2;
+    color: #ffffff;
+}
+
+.buttons-container-unique .btn-primary:hover {
+    background-color: #00c4a7;
+    border-color: #00c4a7;
+}
+
+@media (max-width: 768px) {
+    .cart-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cart-header .is-size-6,
+    .cart-header .is-size-2 {
+        padding: 0.5rem 0;
+    }
+}

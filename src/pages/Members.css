@@ -1,53 +1,53 @@
-.members-container {
+.Members_members-container {
   padding: 20px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.members-header {
+.Members_members-header {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
   text-align: left;
 }
 
-.list-group-item {
+.Members_list-group-item {
   border: 1px solid #ddd;
 }
 
-.members-table {
+.Members_table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.members-table th, .members-table td {
+.Members_table th, .Members_table td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
 }
 
-.members-table th {
+.Members_table th {
   background-color: #f8f8f8;
 }
 
-.members-table td {
+.Members_table td {
   background-color: #fff;
 }
 
-.members-table tr:nth-child(even) td {
+.Members_table tr:nth-child(even) td {
   background-color: #f2f2f2;
 }
 
-.members-table .actions {
+.Members_actions {
   text-align: right;
 }
 
-.members-table .actions button {
+.Members_actions button {
   margin-left: 10px;
 }
 
-.pagination-container {
+.Members_pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;

@@ -1,0 +1,32 @@
+/* OrderEdit.css */
+
+/* 전체 모달 스타일 */
+.orderEdit-modal-header, .orderEdit-modal-footer {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.orderEdit-modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.orderEdit-form-control {
+    margin-bottom: 15px;
+}
+
+.orderEdit-d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orderEdit-d-flex .orderEdit-form-control {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.orderEdit-button-secondary {
+    flex-shrink: 0;
+}
