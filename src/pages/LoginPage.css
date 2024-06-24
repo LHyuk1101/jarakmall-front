@@ -1,4 +1,4 @@
-.LoginPage {
+.LoginPage_LoginPage {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
@@ -8,15 +8,20 @@
     background-color: #fff;
 }
 
-.LoginPage h2 {
+.LoginPage_h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.LoginPage .form-control {
+.LoginPage_form-control {
     margin-bottom: 15px;
 }
 
-.LoginPage .btn-primary {
+.LoginPage_btn-primary {
     width: 100%;
+}
+
+.LoginPage_error-message {
+    color: red;
+    margin-bottom: 15px;
 }

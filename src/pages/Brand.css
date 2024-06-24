@@ -1,0 +1,47 @@
+.brand_container {
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.brand_container h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.brand_list {
+    margin-top: 10px;
+}
+
+.brand_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.brand_buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.brand_buttons button {
+    margin-left: 5px;
+}
+
+.brand_modal-header, .brand_modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

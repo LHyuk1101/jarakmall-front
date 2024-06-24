@@ -1,69 +1,221 @@
-.detail-container {
-    margin-top: 20px;
-  }
-  
-  .detail-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f9f9f9;
-    height: 400px;
-    border: 1px solid #ccc;
-    overflow: hidden; /* 자식 요소가 부모 요소를 벗어나지 않도록 함 */
-  }
-  
-  .image-placeholder img {
-    width: 100%;
-    height: 100%; /* 부모 요소에 맞춰 이미지 높이 조정 */
-    object-fit: cover; /* 부모 요소에 맞게 이미지 조정 */
-  }
-  
-  .detail-info {
-    padding: 20px;
-  }
-  
-  .detail-info h5 {
-    font-weight: normal;
-    margin-bottom: 10px;
-  }
-  
-  .detail-info h2 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .detail-info .price {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  #size-dropdown, #color-dropdown {
-    margin-bottom: 10px;
-  }
-  
-  .total-price {
-    font-size: 18px;
-    margin: 20px 0;
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .add-to-cart, .buy-now {
-    flex: 1;
-  }
-  
-  .nav-tabs {
-    margin-top: 20px;
-  }
-  
-  .DetailModal, .ReviewModal, .QnaModal {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-  }
-  
+.Detail_detail-container {
+  margin-top: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.Detail_detail-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  height: 400px;
+  border: 1px solid #eee;
+}
+
+.Detail_image-placeholder img {
+  max-width: 100%;
+  height: auto;
+}
+
+.Detail_detail-info {
+  padding: 20px;
+  border: 1px solid #eee;
+}
+
+.Detail_detail-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.Detail_price {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.Detail_dropdown-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.Detail_dropdown-button {
+  width: 150px;
+}
+
+.Detail_dropdown-button .dropdown-toggle {
+  width: 100%;
+  text-align: left;
+}
+
+.Detail_quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.Detail_quantity {
+  width: 30px;
+  text-align: center;
+}
+
+.Detail_remove-option {
+  margin-top: 10px;
+}
+
+.Detail_total-price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.Detail_buttons {
+  margin-top: 20px;
+}
+
+.Detail_buttons .btn {
+  width: 150px;
+  margin-right: 10px;
+}
+
+.nav-tabs {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.nav-tabs .nav-link {
+  font-size: 16px;
+  padding: 10px 20px;
+  color: #333;
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+.Detail_DetailModal, .Detail_ReviewModal, .Detail_GuideModal {
+  padding: 20px;
+  border: 1px solid #eee;
+  margin-top: 20px;
+}
+
+.Detail_DetailModal div, .Detail_ReviewModal div, .Detail_GuideModal div {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.Detail_option-selector {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+.Detail_remove-option {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 2px 5px;
+  font-size: 12px;
+}
+
+.Detail_current-stock {
+  font-size: 14px;
+  color: #666;
+}
+
+.Detail_option-details {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.Detail_review-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.Detail_stars {
+  margin-bottom: 10px;
+}
+
+.Detail_star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.Detail_star-selected {
+  color: #ffc107;
+}
+
+.Detail_review-list {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.Detail_review-item {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.Detail_review-content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Detail_review-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Detail_review-center {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Detail_review-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Detail_review-rating {
+  display: flex;
+}
+
+.Detail_review-username,
+.Detail_review-date,
+.Detail_review-content {
+  text-align: left;
+}
+
+.Detail_review-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.Detail_review-image {
+  width: 200px;
+  height: auto;
+  margin-left: 20px;
+}
+
+.Detail_review-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+}

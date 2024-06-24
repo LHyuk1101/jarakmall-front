@@ -1,0 +1,44 @@
+/* OrderDetail.css */
+.order-detail-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-detail-section {
+    margin-bottom: 20px;
+}
+
+.order-detail-item {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.order-detail-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.order-detail-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-detail-info p {
+    margin: 0;
+    padding: 2px 0;
+}
+
+.order-detail-section h2 {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}

@@ -1,30 +1,30 @@
-.category-container {
+.Category_category-container {
     padding: 20px;
 }
 
-.category-container h2 {
+.Category_category-container h2 {
     display: inline-block;
     margin-right: 20px;
 }
 
-.category-container button {
+.Category_category-container button {
     display: inline-block;
     vertical-align: middle;
 }
 
-.category-list {
+.Category_category-list {
     margin-top: 20px;
 }
 
-.category-item {
+.Category_category-item {
     margin-left: 20px;
     margin-top: 10px;
 }
 
-.indent {
+.Category_indent {
     margin-right: 10px;
 }
 
-button {
+.Category_button {
     margin-left: 10px;
 }
